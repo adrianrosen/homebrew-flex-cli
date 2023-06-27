@@ -12,6 +12,10 @@ fn main() {
 
     match args.get(1).map(|s| s.as_str()) {
         Some("in") => {
+            if args.len() < 3 {
+                println!("Invalid input. Usage: flex-cli in [hours]");
+                return;
+            }
             let new_hours = args.get(2).and_then(|s| s.parse().ok()).unwrap_or(0.0);
             if new_hours % 0.25 != 0.0 {
                 println!("Invalid input. Hours must be in 0.25 intervals.");
@@ -22,6 +26,10 @@ fn main() {
             println!("{} hours saved", hours);
         }
         Some("out") => {
+            if args.len() < 3 {
+                println!("Invalid input. Usage: flex-cli out [hours]");
+                return;
+            }
             let new_hours = args.get(2).and_then(|s| s.parse().ok()).unwrap_or(0.0);
             if new_hours % 0.25 != 0.0 {
                 println!("Invalid input. Hours must be in 0.25 intervals.");
